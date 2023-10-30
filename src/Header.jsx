@@ -15,7 +15,6 @@ export default function Header({title, currentPage, setCurrentPage, user}) {
                 {title}
             </div>
 
-
         </header>
     )
 }
