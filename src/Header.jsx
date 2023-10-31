@@ -1,3 +1,4 @@
+import CurrencySelection from "./CurrencySelection";
 import "./Header.scss"
 import Topmenu from './Topmenu'
 
@@ -14,6 +15,8 @@ export default function Header({title, currentPage, setCurrentPage, user}) {
             <div className="header__sitename">
                 {title}
             </div>
+
+            <CurrencySelection />
 
         </header>
     )
