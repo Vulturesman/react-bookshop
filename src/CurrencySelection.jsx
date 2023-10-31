@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import CurrencyContext from './CurrencyContext'
+import context from "./Context";
 
 export default function CurrencySelection() {
 
     const [currencies, setCurrencies] = useState([]);
-    const [currency, setCurrency] = useState(localStorage.getItem('currency') || 'EUR');
+    const { currency, setCurrency } = useContext(CurrencyContext)
     const [exchangeRate, setExchangeRate] = useState(1);
+    const { state, dispatch } = useContext(context);
 
     const loadCurrencies = async () => {
         const response = await fetch('https://classes.codingbootcamp.cz/assets/classes/books-api/currencies.php')
@@ -19,12 +22,15 @@ export default function CurrencySelection() {
         const data = await response.json()
 
         setExchangeRate(data)
+        
+        dispatch({...state, exchangeRate: data.rate, cur: data.currency })
     }
 
     useEffect(() => {
         loadExchangeRates(currency)
-        console.log('Currency changed: ', currency);
-        }, [localStorage.setItem('currency', currency)]
+        localStorage.setItem('currency', currency)
+        // console.log('Currency changed: ', currency);
+        }, [currency]
     )
 
 
