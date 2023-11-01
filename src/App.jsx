@@ -5,6 +5,7 @@ import Footer from './Footer'
 import MainContent from './MainContent'
 import CurrencyContext from './CurrencyContext'
 import Context from './Context'
+import { BrowserRouter } from 'react-router-dom'
 
 
 function App() {
@@ -21,15 +22,17 @@ function App() {
 
   return (
 
-    <Context.Provider value={{ state: contextValue, dispatch: setContextValue }}>
-      <CurrencyContext.Provider value={{currency, setCurrency}}>
-        
-          <Header user={user} currentPage={currentPage} setCurrentPage={setCurrentPage} title={nameBookShop} />
-          <MainContent user={user} setUser={setUser} currentPage={currentPage} content={text}/>
-          <Footer />
-        
-      </CurrencyContext.Provider>
-    </Context.Provider>
+    <BrowserRouter>
+      <Context.Provider value={{ state: contextValue, dispatch: setContextValue }}>
+        <CurrencyContext.Provider value={{currency, setCurrency}}>
+          
+            <Header user={user} currentPage={currentPage} setCurrentPage={setCurrentPage} title={nameBookShop} />
+            <MainContent user={user} setUser={setUser} currentPage={currentPage} content={text}/>
+            <Footer />
+          
+        </CurrencyContext.Provider>
+      </Context.Provider>
+    </BrowserRouter>
   )
 }
 

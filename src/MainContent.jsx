@@ -1,13 +1,17 @@
 import './MainContent.scss'
 import LoginForm from './LoginForm'
 import Homepage from './Homepage'
+import About from './About'
+import { Routes, Route } from 'react-router-dom'
+import BookDetail from './BookDetail'
 
 export default function MainContent({content, currentPage, user, setUser}) {
     return (
         <main className="main">
             <h1 className="app__headline">{content}</h1>
 
-        {
+       
+         {
             currentPage === '' &&
             <> 
                 <Homepage />  
@@ -15,8 +19,12 @@ export default function MainContent({content, currentPage, user, setUser}) {
         }
 
         {
-            currentPage === 'about' && <h2>About Us</h2>
+            currentPage === 'about' && 
+            <>
+                <About />
+            </>
         }
+       
 
         {
             currentPage === 'contact' && 
@@ -34,6 +42,18 @@ export default function MainContent({content, currentPage, user, setUser}) {
             currentPage === 'login' && <LoginForm user={user} setUser={setUser} />
         }
 
+
         </main>
     )
 }
+
+
+/*
+
+            <Routes>
+                <Route path="/" element={ <Homepage /> } />
+                <Route path="/about" element={ <About /> } />
+                <Route path="/book/:id" element= { <BookDetail /> } />
+            </Routes>
+
+            */
